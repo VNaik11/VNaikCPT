@@ -18,7 +18,7 @@ public class VeerCPT{
 		
 	strChoice = con.readLine();
 	if(strChoice.equals("play")){
-		game(con);
+		pregame(con);
 	}else if(strChoice.equals("score")){
 		score(con);
 	}else if(strChoice.equals("help")){
@@ -28,7 +28,11 @@ public class VeerCPT{
 	}
 }
 	
+	
 	public static void pregame(Console con){
+	
+	//The function of this console is to determine the usernames of both players.
+	//This console also determines whether the player wants to record their game.
 	
 	con.clear();
 	
@@ -39,15 +43,14 @@ public class VeerCPT{
 	con.println("PLAYER ONE - ENTER YOUR USERNAME");
 	strP1 = con.readLine();
 	con.println("PLAYER TWO- ENTER YOUR USERNAME");
-	strP2 = con.readLine();
-	
+	strP2 = con.readLine();	
 	
 	//Ask reader if they would like to record the game.
 	
 	String strRecord;
-	strRecord = con.readLine();
 	
 	con.println("Would you like to record the game?");
+	strRecord = con.readLine();
 	if(strRecord.equals("yes")){
 		record(con);
 	}else if(strRecord.equals("no")){
@@ -57,6 +60,9 @@ public class VeerCPT{
 		
 	public static void game(Console con){
 	
+	//Actual gameplay code of the game.
+	//Includes pieces, and board.
+	
 	con.clear();
 	
 	BufferedImage imgGame = con.loadImage("Game.jpg");
@@ -65,34 +71,29 @@ public class VeerCPT{
 	//Pieces for the game:
 	//Player One Piece: VeerToolsCPT.P1Piece(con);
 	//Player Two Piece; VeerToolsCPT.P2Piece(con);
-	
-
 	//Array
 	
 	int intRow;
 	int intCol;
-	
-	int intP1Piece;
-	int intP2Piece;
-	
-	intP1Piece = VeerToolsCPT.P1Piece(con);
-	intP2Piece = VeerToolsCPT.P2Piece(con);
+	int intMove = VeerToolsCPT.P1Piece(con);
 	
 	//Creating the board.
 	int intBoard[][];
 	intBoard = new int[5][6];
 	
-	for(intCol = 0; intCol <6; intCol++){
+	for(intRow = 0; intRow <5; intRow++){
 		
 		//Placing the piece into column 1.
-		//intBoard[intColumn][0] = 
+		intBoard[intRow][0] = intMove;
 		//Placing the piece into column 2.
-		//strBoard[intColumn][1] = 
+		intBoard[intRow][1] = intMove;
 		}
 	}
 
 	
 	public static void record(Console con){
+	
+	//This console takes the user inputs from the game and stores them in the recording.txt file.
 	
 	con.clear();
 	
@@ -112,12 +113,35 @@ public class VeerCPT{
 		con.println("Please enter a valid move.");
 	}
 	txtRecording.println(intMove);
-	txtRecording.close();
+	
+	con.println("Would you like to start a \"new\" game or watch the \"replay?\"");
+	String strDecision;
+	strDecision = con.readLine();
+	
+	if(strDecision.equals("new")){
+		game(con);
+	}else if(strDecision.equals("replay")){
+		playback(con);
+	}
+	
 }
 	
-	//File IO (Output) Replay the Users Moves
+	public static void playback(Console con){
+		
+	//Taking information from recording.txt and replaying the moves.
+	//When the user enters stop, the game goes back to the main menu.
+	
+	int intP1;
+	int intP2;
+	
+	TextInputFile txtGrades = new TextInputFile("recording.txt");
+	
+		
+	}
 	
 	public static void help(Console con){
+		
+	//Help menu.
 		
 	con.clear();
 	
@@ -133,7 +157,15 @@ public class VeerCPT{
 	
 	public static void score(Console con){
 		
+	//The function here is to sort the amount of wins in descending order by username.
+		
 	con.clear();
+	
+	TextOutputFile txtHighScores = new TextOutputFile("highscores.txt", true);
+	
+	//if(int
+	
+	
 		
 	}
 }

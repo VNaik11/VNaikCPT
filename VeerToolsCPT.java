@@ -5,10 +5,7 @@ public class VeerToolsCPT{
 	
 	public static void P1Piece(Console con){
 		con.setDrawColor(Color.RED);
-		con.fillOval(50, 50, 50, 50);
-		
-		con.setDrawColor(Color.YELLOW);
-		con.fillOval(50, 50, 50, 50);
+		con.fillOval(50, 100, 50, 50);
 	
 	}
 	
