@@ -30,6 +30,8 @@ public class VeerCPT{
 	
 	public static void pregame(Console con){
 	
+	con.clear();
+	
 	//Enter your Usernames
 	String strP1;
 	String strP2;
@@ -49,28 +51,38 @@ public class VeerCPT{
 	if(strRecord.equals("yes")){
 		record(con);
 	}else if(strRecord.equals("no")){
+		game(con);
 	}
 }
 		
 	public static void game(Console con){
 	
+	con.clear();
+	
+	BufferedImage imgGame = con.loadImage("Game.jpg");
+		con.drawImage(imgGame, 0, 0);
+	
+	//Pieces for the game:
+	//Player One Piece: VeerToolsCPT.P1Piece(con);
+	//Player Two Piece; VeerToolsCPT.P2Piece(con);
+	
+
 	//Array
 	
 	int intRow;
 	int intCol;
 	
-	//Creating the board.
-	int intBoard[][];
-	intBoard = new int[6][5];
-	
-	//Creating the pieces.
-	
 	int intP1Piece;
 	int intP2Piece;
 	
+	intP1Piece = VeerToolsCPT.P1Piece(con);
+	intP2Piece = VeerToolsCPT.P2Piece(con);
 	
+	//Creating the board.
+	int intBoard[][];
+	intBoard = new int[5][6];
 	
-	for(intRow = 0; intRow <6; intRow++){
+	for(intCol = 0; intCol <6; intCol++){
 		
 		//Placing the piece into column 1.
 		//intBoard[intColumn][0] = 
@@ -81,6 +93,12 @@ public class VeerCPT{
 
 	
 	public static void record(Console con){
+	
+	con.clear();
+	
+	BufferedImage imgGame = con.loadImage("Game.jpg");
+		con.drawImage(imgGame, 0, 0);
+	
 	
 	//Recording the game.
 	
@@ -101,13 +119,22 @@ public class VeerCPT{
 	
 	public static void help(Console con){
 		
-	con.println("Connect 4 is a game where you 
+	con.clear();
+	
+	BufferedImage imgHelp = con.loadImage("Help.jpg");
+		con.drawImage(imgHelp, 0, 0);
+		
+	con.println("Connect 4 is a game where you and someone else take tuens placing pieces on the board.");
+	con.println("The goal of the game is to to have a straight line of four connecting pieces.");
+	con.println("These pieces can go vertical, straight, or sideways.");
+	con.println("The first person to connect four in a row wins!");
 		
 	}
 	
 	public static void score(Console con){
 		
+	con.clear();
+		
 	}
-
-	}
+}
 
