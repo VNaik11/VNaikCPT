@@ -67,26 +67,44 @@ public class VeerCPT{
 	
 	BufferedImage imgGame = con.loadImage("Game.jpg");
 		con.drawImage(imgGame, 0, 0);
-	
-	//Pieces for the game:
-	//Player One Piece: VeerToolsCPT.P1Piece(con);
-	//Player Two Piece; VeerToolsCPT.P2Piece(con);
+
 	//Array
-	
-	int intRow;
-	int intCol;
-	int intMove = VeerToolsCPT.P1Piece(con);
-	
 	//Creating the board.
 	int intBoard[][];
 	intBoard = new int[5][6];
 	
-	for(intRow = 0; intRow <5; intRow++){
+	int intRow;
+	int intCol;
+	int intP1Move;
+	int intP2Move;
+	
+	boolean win = false;
+	
+	con.println("Make your move");
+	while(win = false){
+		intP1Move = con.readInt();
+		intP2Move = con.readInt();
+		for(intRow = 5; intRow < 0; intRow--){
+			for(intCol = 0; intCol < 6; intCol++){
+				intBoard[intRow][intP1Move] = intCol;
+				
+				
+			}
+		}
+		for(intRow = 5; intRow < 0; intRow--){
+			for(intCol = 0; intCol < 6; intCol++){
+				intBoard[intRow][intP2Move] = intCol;
+			}
+		}
+	}
+	
+	for(intRow = 5; intRow < 0; intRow--){
+			for(intCol = 0; intCol < 6; intCol++){
+				con.println(intBoard[intRow][0]+intBoard[intRow][1]+intBoard[intRow][2]+intBoard[intRow][3]+intBoard[intRow][4]+intBoard[intRow][5]+intBoard[intRow][6]);
+ 
 		
-		//Placing the piece into column 1.
-		intBoard[intRow][0] = intMove;
-		//Placing the piece into column 2.
-		intBoard[intRow][1] = intMove;
+		
+			}
 		}
 	}
 
@@ -100,19 +118,47 @@ public class VeerCPT{
 	BufferedImage imgGame = con.loadImage("Game.jpg");
 		con.drawImage(imgGame, 0, 0);
 	
-	
 	//Recording the game.
 	
-	TextOutputFile txtRecording = new TextOutputFile("recording.txt", true);
-	int intMove;
-	con.println("Enter the move you would like to make.");
-	intMove = con.readInt();
-	if(intMove > 7){
-		con.println("Please enter a valid move.");
-	}else if(intMove < 0){
-		con.println("Please enter a valid move.");
+	TextOutputFile txtRecording = new TextOutputFile("recording.txt");
+	
+	int intBoard[][];
+	intBoard = new int[5][6];
+	
+	int intRow;
+	int intCol;
+	int intP1Move;
+	int intP2Move;
+	
+	boolean win = false;
+	
+	while(win = false){
+		intP1Move = con.readInt();
+		intP2Move = con.readInt();
+		txtRecording.println(intP1Move);
+		txtRecording.println(intP2Move);
+		for(intRow = 5; intRow < 0; intRow--){
+			for(intCol = 0; intCol < 6; intCol++){
+				intBoard[intRow][intP1Move] = intCol;
+				
+				
+			}
+		}
+		for(intRow = 5; intRow < 0; intRow--){
+			for(intCol = 0; intCol < 6; intCol++){
+				intBoard[intRow][intP2Move] = intCol;
+			}
+		}
 	}
-	txtRecording.println(intMove);
+	
+	for(intRow = 5; intRow < 0; intRow--){
+			for(intCol = 0; intCol < 6; intCol++){
+				con.println(intBoard[intRow][0]+intBoard[intRow][1]+intBoard[intRow][2]+intBoard[intRow][3]+intBoard[intRow][4]+intBoard[intRow][5]+intBoard[intRow][6]);
+	
+	
+	
+	//strWinner = winner of the game.
+	
 	
 	con.println("Would you like to start a \"new\" game or watch the \"replay?\"");
 	String strDecision;
@@ -122,8 +168,10 @@ public class VeerCPT{
 		game(con);
 	}else if(strDecision.equals("replay")){
 		playback(con);
-	}
-	
+		
+			}
+		}
+	}	
 }
 	
 	public static void playback(Console con){
@@ -131,12 +179,19 @@ public class VeerCPT{
 	//Taking information from recording.txt and replaying the moves.
 	//When the user enters stop, the game goes back to the main menu.
 	
-	int intP1;
-	int intP2;
+	TextInputFile txtRecord = new TextInputFile("recording.txt");
 	
-	TextInputFile txtGrades = new TextInputFile("recording.txt");
-	
+	int intCol;
+	int intRow = 5;
 		
+		int intBoard[][] = new int[5][6];
+		for(intRow = 0; intRow < 5; intRow--){
+			for (intCol = 0; intCol < 6; intCol++){
+				
+				intBoard[intRow][intCol] = txtRecord.readInt(); 
+			
+			}
+		}
 	}
 	
 	public static void help(Console con){
@@ -161,12 +216,23 @@ public class VeerCPT{
 		
 	con.clear();
 	
-	TextOutputFile txtHighScores = new TextOutputFile("highscores.txt", true);
+	TextInputFile txtHighScores = new TextInputFile("highscore.txt");
+	String strUsername;
+	String strWinner = "Player1";
+	int intWins;
 	
-	//if(int
-	
-	
-		
+	while(txtHighScores.eof() == false){
+		strUsername = txtHighScores.readLine();
+		intWins = txtHighScores.readInt();
+		if(strUsername.equals(strWinner)){
+			intWins = intWins + 1;
+		}
 	}
 }
+	
+
+	
+		
+}
+
 
