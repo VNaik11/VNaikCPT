@@ -73,6 +73,11 @@ public class VeerCPT{
 	int intBoard[][];
 	intBoard = new int[5][6];
 	
+	
+	//Variables for each column and row.
+	//Variables for each player move.
+	//Boolean to see if there is a win. 
+	//If no win, the loop continues.
 	int intRow;
 	int intCol;
 	int intP1Move;
@@ -81,7 +86,10 @@ public class VeerCPT{
 	boolean win = false;
 	
 	con.println("Make your move");
+	intP1Move = con.readInt();
+	intP2Move = con.readInt();
 	while(win = false){
+		win = false;
 		intP1Move = con.readInt();
 		intP2Move = con.readInt();
 		for(intRow = 5; intRow < 0; intRow--){
@@ -115,10 +123,11 @@ public class VeerCPT{
 	
 	con.clear();
 	
-	BufferedImage imgGame = con.loadImage("Game.jpg");
-		con.drawImage(imgGame, 0, 0);
+	BufferedImage imgRecord = con.loadImage("Recording.jpg");
+		con.drawImage(imgRecord, 0, 0);
 	
 	//Recording the game.
+	//Same code as above, but the moves are stored in a txt file called recording.txt
 	
 	TextOutputFile txtRecording = new TextOutputFile("recording.txt");
 	
@@ -132,11 +141,12 @@ public class VeerCPT{
 	
 	boolean win = false;
 	
-	while(win = false){
-		intP1Move = con.readInt();
+	intP1Move = con.readInt();
 		intP2Move = con.readInt();
 		txtRecording.println(intP1Move);
 		txtRecording.println(intP2Move);
+	while(win = false){
+		win = false;
 		for(intRow = 5; intRow < 0; intRow--){
 			for(intCol = 0; intCol < 6; intCol++){
 				intBoard[intRow][intP1Move] = intCol;
@@ -216,11 +226,16 @@ public class VeerCPT{
 		
 	con.clear();
 	
+	BufferedImage imgHighScore = con.loadImage("highscore.jpg");
+		con.drawImage(imgHighScore, 0, 0);
+	
 	TextInputFile txtHighScores = new TextInputFile("highscore.txt");
 	String strUsername;
 	String strWinner = "Player1";
 	int intWins;
 	
+	//Everytime there is a win it adds an extra win to the user that wins.
+	con.println("High Scores:");
 	while(txtHighScores.eof() == false){
 		strUsername = txtHighScores.readLine();
 		intWins = txtHighScores.readInt();
@@ -228,6 +243,12 @@ public class VeerCPT{
 			intWins = intWins + 1;
 		}
 	}
+	
+	//Attempted try to use the informatiuon from highscore.txt and use a method to sort the wins.
+	
+	//String strSort[][] = VeerToolsCPT.sortWins(txtHighScores);
+	//con.println strSort[][];
+	
 }
 	
 
